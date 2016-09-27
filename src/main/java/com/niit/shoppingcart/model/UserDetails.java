@@ -1,33 +1,52 @@
 package com.niit.shoppingcart.model;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table
 @Component
-
 public class UserDetails {
-	
+
 	@Id
-	private String id;
-	private String name;
+	@GeneratedValue
+	private int id;
+	private String username;
 	private String password;
 	private String mail;
 	private String contact;
 	private String address;
-	public String getId() {
+	private String role;
+	private boolean enabled;
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean b) {
+		this.enabled = b;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -53,14 +72,11 @@ public class UserDetails {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Object getRole() {
+	public Object getUserId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	
-	
-	
 
+	
 }
-

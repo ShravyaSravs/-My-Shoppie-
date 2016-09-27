@@ -29,20 +29,12 @@ public class CategoryController {
     	return "redirect:/Category";
     }
 	
-	 /*@RequestMapping(value="delcategory")
-	   public String deletecategory(@ModelAttribute("category")Category category, Model m)
-	   {
-	    	categoryDAO.delete(category);
-	    m.addAttribute("del","category deleted successfully");
-	    return "Home";
-	   }*/
-
     @RequestMapping(value="Category")
-   public ModelAndView categorypage(@ModelAttribute("category") Category category,BindingResult result,
-   		@ModelAttribute("category1") Category category1,BindingResult result1)
+   public ModelAndView categorypage(@ModelAttribute("category") Category category,BindingResult result)
+   	
    {
     	
-   	 ModelAndView mv= new ModelAndView("/Home");
+   	 ModelAndView mv= new ModelAndView("/Admin");
    	//mv.addObject("category", new Category());
    	mv.addObject("categoryList",categoryDAO.list());
    	mv.addObject("UserClickedcategory", "true");
@@ -50,8 +42,8 @@ public class CategoryController {
    }
     
     @RequestMapping(value={"addeditcategory/{id}"})
-    public String Categorypagedelete(@PathVariable("id") String id,RedirectAttributes attributes){
-   	 attributes.addFlashAttribute("category1",this.categoryDAO.get(id));
+    public String Categorypagedelete(@PathVariable("id") int id,RedirectAttributes attributes){
+   	 attributes.addFlashAttribute("category",this.categoryDAO.get(id));
    	 return "redirect:/Category";
     }
     @RequestMapping(value={"adddeletecategory/{id}"})

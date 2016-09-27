@@ -18,7 +18,7 @@ public class CategoryTest {
 		CategoryDAO categoryDAO =   (CategoryDAO) context.getBean("categoryDAO");
 		Category category =   (Category) context.getBean("category");
 		
-		category.setId("CN002");
+		category.setId(002);
 		category.setName("mobiles");
 		category.setDescription("this is micro mobile");
 		categoryDAO.saveOrUpdate(category);

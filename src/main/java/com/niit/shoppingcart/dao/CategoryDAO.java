@@ -10,7 +10,7 @@ import com.niit.shoppingcart.model.Category;
 public interface CategoryDAO {
 	
 	
-	public Category get(String id);
+	public Category get(int id);
 	
 	public List<Category> list();
 

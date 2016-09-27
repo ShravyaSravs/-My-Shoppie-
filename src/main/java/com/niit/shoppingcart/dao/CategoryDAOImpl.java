@@ -2,6 +2,7 @@ package com.niit.shoppingcart.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -71,6 +72,22 @@ public  List<Category> list(){
 @SuppressWarnings("rawtypes")
 Query query = sessionFactory.getCurrentSession().createQuery(hql);
 return query.list();
+}
+
+@Transactional
+public Category get(int id) {
+	String hql = "from"+" Category"+" where id=" + id;
+	@SuppressWarnings("rawtypes")
+	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	
+	@SuppressWarnings("unchecked")
+	List<Category> listCategory = (List<Category>) query.list();
+	
+	if (listCategory != null && !listCategory.isEmpty()) {
+		return listCategory.get(0);
+	}
+	
+	return null;
 }
 
 

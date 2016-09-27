@@ -21,17 +21,17 @@ public class SupplierDAOImpl implements SupplierDAO {
 	public SupplierDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
-	
 	@Transactional
 	public boolean saveOrUpdate(Supplier supplier){
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
 	@Transactional
 	public boolean delete(Supplier supplier){
 		try {
@@ -44,7 +44,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 	@Transactional
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public  Supplier get(String id){
+	public  Supplier get(int id){
 		
 		String hql = "from Supplier where id= "+ "'"+ id+"'" ;
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
@@ -59,17 +59,14 @@ public class SupplierDAOImpl implements SupplierDAO {
 			return list.get(0);
 		}
 	}
-	@Transactional
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Transactional
 	public  List<Supplier> list(){
 		
 		String hql ="from Supplier";
 	Query query = sessionFactory.getCurrentSession().createQuery(hql);
 	return query.list();
 	}
-
-	
-	
 		
 	
 }
