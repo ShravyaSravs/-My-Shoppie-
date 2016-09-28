@@ -21,7 +21,7 @@ padding: 8px;
 </style>
 </head>
 
-<body background="C:\Users\shravya\Desktop\shravya.jpg">
+<body background="http://cdn.wallpapersafari.com/45/96/BYyTUW.jpg">
 	<c:url var="addAction" value="editcategory"></c:url>
 	<form:form action="${addAction}" commandName="category">
 Id:<form:input path="id" /><br>

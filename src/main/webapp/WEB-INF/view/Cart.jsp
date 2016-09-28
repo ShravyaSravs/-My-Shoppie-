@@ -8,7 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cart Page</title>
 <style>
-
+body {
+    background-image: url("http://static.tumblr.com/f342e413a75df4ba43d3457bc87416b5/ahbiavk/jQtn9p5dv/tumblr_static_41tmawoyjmioogos4gg0kwko.gif");
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -69,7 +71,8 @@ Total Price:
 
 				<div class="panel-footer">
 					<div class="row text-center">
-						
+						<div class="col-xs-3">
+							<a href="Home" class="btn btn-info btn-sm btn-block">Continue Shopping</a></div>
 						<div class="col-xs-6">
 							<h4 class="text-right">Total : Rs ${CartPrice}</h4>
 						</div>

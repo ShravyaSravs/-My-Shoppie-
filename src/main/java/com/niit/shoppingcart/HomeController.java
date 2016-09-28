@@ -22,6 +22,7 @@ public class HomeController {
 	public String DisplayLogin(Model mv) {
 		mv.addAttribute("userDetails", new UserDetails());
 		mv.addAttribute("UserClickedlogin", "true");
+		mv.addAttribute("HideOthers", "true");
 		return "Home";
 	}
 @RequestMapping("/")
@@ -36,7 +37,7 @@ public String homepage(Model m){
 public String ShowProduct(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {
 m.addAttribute("Clickedshowproduct", "true");
 	m.addAttribute("IndividualProduct", productDAO.getproduct(id));
-	return "ShowProduct";
+	return "Home";
 }
 
 }

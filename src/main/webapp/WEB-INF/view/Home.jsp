@@ -162,7 +162,7 @@ h3, h4 {
 	color: #777;
 }
 
-.navbar {
+/* .navbar {
 	font-family: Montserrat, sans-serif;
 	margin-bottom: 0;
 	background-color: #2d2d30;
@@ -188,7 +188,7 @@ h3, h4 {
 .navbar-default .navbar-toggle {
 	border-color: transparent;
 }
-
+ */
 .open .dropdown-toggle {
 	color: #fff;
 	background-color: #555 !important;
@@ -205,14 +205,15 @@ h3, h4 {
 </style>
 </head>
 
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<body background="http://cdn.wallpapersafari.com/45/96/BYyTUW.jpg">
+<h1><b>@My Shoppie@<img alt="Logo" src="C:\Users\shravya\Desktop\mslogo.jpg" width="50" height="50"></b></h1>
+  <%-- <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header"></div>
 		<ul class="nav navbar-nav">
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="shop for"><span
-					class="glyphicon glyphicon-home" align="right"></span>Home</a>
+				data-toggle="dropdown" href="shop for"></a>
+				 <span class="glyphicon glyphicon-home" align="right"></span>Category</a> 
 				<ul class="dropdown-menu">
 					<li><c:forEach items="${categoryList}" var="category">
 							<a href="#"><c:out value="${category.name}" /><span
@@ -220,27 +221,36 @@ h3, h4 {
 							<br>
 						</c:forEach></li>
 				</ul></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-				
-			<span class="glyphicon glyphicon-user">Admin</span>
-			
-			
-			<li><a href="Cart"> <span
-					class="glyphicon glyphicon-shopping-cart"></span>Cart
-			</a></li>
+		</ul> --%>
+		
+		<ul class="nav navbar-nav navbar-right"> 
+		
 	         <sec:authorize access="isAuthenticated()">
 
 				<li><a href="<c:url value="/perform_logout" />">Logout</a></li>
+					<li><a href="Cart"> <span
+					class="glyphicon glyphicon-shopping-cart"></span>Cart
+			</a></li> 
 				<li><a href="">Welcome<sec:authentication
 							property="principal.username" /></a></li>
+							
 			</sec:authorize>
-			<sec:authorize access="!isAuthenticated()">
+		<%-- 	<c:choose>	
+						<c:when test="${!Administrator}">	
+						<li style="float: right"><a href="viewcart"
+							class="w3-hover-none"><i class="glyphicon glyphicon-shopping-cart"></i>(${cartsize})</a></li>
+						</c:when>
+						</c:choose>
+                      
+						<li style="float: right"><a href="#" class="w3-hover-none"><i
+								class="glyphicon glyphicon-user"></i> Hi, ${name}</a></li> 
+					
+ --%>			<sec:authorize access="!isAuthenticated()">
 				<li><a href="Registration"><span
 						class="glyphicon glyphicon-user"></span>Register</a></li>
 				<li><a href="Login"><span
 						class="glyphicon glyphicon-log-in"></span>Login</a></li>
-
+               
 			</sec:authorize>
 		</ul>
 
@@ -258,7 +268,7 @@ h3, h4 {
 		</div>
 	</div>
 	</nav>
-<div class="container">
+<<!-- div class="container">
   <div class="btn-group btn-group-justified">
     <button type="button" class="btn btn-primary">WOMEN</button>
     <ul class="dropdown-menu" role="menu">
@@ -279,9 +289,31 @@ h3, h4 {
       </ul>
     </div>
   </div>
-</div>   
+</div>    -->
+<c:choose>
 
+				<c:when test="${!Administrator}">
+					<!-- Category List -->
+					<c:if test="${!empty categoryList}">
+						<div>
+							<ul
+								class="w3-navbar w3-light-grey w3-round w3-small menu w3-card-4 "
+								Style="width: 70%; margin-left: 15%; margin-top: -2px;">
+								<c:forEach items="${categoryList}" var="category">
+									<li><a href="view/${category.id}" class="w3-hover-none"><i
+											class="fa fa-list-alt" aria-hidden="true"></i>
+											${category.name}</a></li>
+								</c:forEach>
 
+							</ul>
+						</div>
+					</c:if>
+				</c:when>
+				</c:choose>
+
+<c:choose>
+<c:when test="${!Administrator }">
+<c:if test="${empty HideOthers}">
 
 	<div class="container">
 		<br>
@@ -330,8 +362,11 @@ h3, h4 {
 			</a>
 		</div>
 	</div>
+	</c:if>
+	</c:when>
+	</c:choose>
 
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-sm-4">
 			<p class="text-center">
 				<strong>LONG_FROCKS</strong>
@@ -384,8 +419,52 @@ h3, h4 {
          <button type="button" class="btn btn-warning">Add to cart</button> 
 			
 		</div>
-	</div>
+	</div> -->
+
 	
+<%-- 	<div style="width:100%; height:20;"></div>
+
+		<c:choose>
+			<c:when test="${!Administrator}">
+				<c:if test="${!empty productList}">
+					<div>
+						<!-- <ul> -->
+						<div class="row w3-card-8 w3-margin" style="margin-bottom: 0px">
+							<br>
+							<c:forEach items="${productList}" var="product">
+								
+									<div class="thumbnail">
+									<div class="col-md-4">
+							<a href="ShowProduct/${product.id}"></a> 
+										<img height="200px" width="200px" alt="${product.id}"
+											src="<c:url value="/resources/images/product/${product.id}.jpg"></c:url>">
+										<div class="caption">
+											<p>
+												${product.name}
+												<c:choose>
+													<c:when test="${LoggedIn}">
+														<form action="addtoCart/${userId}/${product.id}">
+															<input type="number" value="1" name="quantity"
+																class="btn btn-xs btn-primary   col-xs-6 ">
+															<input type="submit" value="Add" class="btn btn-xs col-xs-6 btn-primary">
+														</form>
+														
+													</c:when>
+												</c:choose>
+											</p>
+										</div>
+									</div>
+								</div>
+								</c:forEach>
+						</div>
+						
+					</div>
+				</c:if>
+			</c:when>
+		</c:choose>
+	 --%>
+	
+	<c:if test="${empty HideOthers }">
 	<c:forEach items="${productList}" var="product"><tr>
 <td id="td1"><c:out value="${product.name}" />
 
@@ -396,21 +475,24 @@ h3, h4 {
      					src="<c:url value="/resources/images/product/${product.id }.jpg"></c:url>"></a>
      					
      					<td>
-			<td id="td1"><c:out value="${product.price}" />
+			<td id="td1"><c:out value="${product.name}" />
+			<sec:authorize access="isAuthenticated()">
 			<c:url var="action" value="addtocart/${product.id}"></c:url>
 			<form:form action="${action}" modelAttribute="cart">
 			
 			<input type="submit" class="btn btn-primary" value="Add To Cart" />
-			</form:form></td>
+			</form:form>
+			</sec:authorize>
+			</td>
 									
 							</div>
-							
-			
+	</td>						
+		
 </tr>						
 </td></c:forEach>
 </div>
 	
-
+</c:if>
 	<%-- <table>
 		<c:forEach items="${productList}" var="product">
 			<tr>
@@ -458,5 +540,39 @@ h3, h4 {
 			<c:import url="/WEB-INF/view/Cart.jsp"></c:import>
 		</c:when>
 	</c:choose>
+	<c:choose>
+		<c:when test="${UserClickedPayment}">
+			<c:import url="/WEB-INF/view/Payment.jsp"></c:import>
+		</c:when>
+	</c:choose>
+<%-- 	 <c:choose>
+<c:when test="${UserClickedsupplier}">
+<c:import url="/WEB-INF/view/Supplier.jsp"></c:import>
+</c:when>
+</c:choose>
+<c:choose>
+<c:when test="${UserClickedproduct}">
+<c:import url="/WEB-INF/view/Product.jsp"></c:import>
+</c:when>
+</c:choose>
+<c:choose>
+<c:when test="${UserClickedcategory}">
+<c:import url="/WEB-INF/view/Category.jsp"></c:import>
+</c:when>
+</c:choose>
+	<c:choose>
+	<c:when test="${Administrator}">
+                 <div class="btn-group btn-group-justified">
+				<div class="btn-group"><a href="product"class="btn btn-primary"> Products</a></div>
+				<div class="btn-group"><a href="category" class="btn btn-primary">Category</a></div>
+				<div class="btn-group"><a href="supplier" class="btn btn-primary"> Supplier</a></div>
+					</div>
+			
+		</c:when>
+	</c:choose><!-- category list -->
+${msg}
+${msg1}
+ --%>
+
 </body>
 </html>

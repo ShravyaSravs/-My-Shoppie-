@@ -29,7 +29,7 @@
 	};
 </script>
 </head>
-<body>
+<body background="http://cdn.wallpapersafari.com/45/96/BYyTUW.jpg">
 	<div class="text-center myForm">
 		<c:url var="action" value="editsupplier"></c:url>
 		<form:form action="${action}" modelAttribute="supplier">

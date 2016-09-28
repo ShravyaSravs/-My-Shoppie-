@@ -19,6 +19,7 @@ public class RegController {
 	public String DisplayRegister(Model mv) {
 		mv.addAttribute("userDetails", new UserDetails());
 		mv.addAttribute("UserClickeduser", "true");
+		mv.addAttribute("HideOthers", "true");
 		return "Home";
 	}
 	
@@ -33,9 +34,6 @@ public class RegController {
         else{
         	attributes.addFlashAttribute("registered","Registration failed Please try again");
         }
-		return "redirect:/Registration";
+		return "redirect:/Home";
 	}
-
-
-	
 }

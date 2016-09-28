@@ -21,6 +21,14 @@ private String productname;
 @Column(columnDefinition="int default 1")
 private int quantity;
 private double price;
+private double subtotal;
+
+public double getSubtotal() {
+	return subtotal;
+}
+public void setSubtotal(double subtotal) {
+	this.subtotal = subtotal;
+}
 public int getId() {
 	return id;
 }
@@ -54,8 +62,8 @@ public void setQuantity(int quantity) {
 public double getPrice() {
 	return price;
 }
-public void setPrice(double d) {
-	this.price = d;
+public void setPrice(double price) {
+	this.price = price;
 }
 
 

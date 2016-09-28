@@ -25,7 +25,7 @@ padding: 8px;
 }
 </style>
 </head>
-<body>
+<body background="http://cdn.wallpapersafari.com/45/96/BYyTUW.jpg">
 
 	<c:url var="editaction" value="editproduct"></c:url>
 	<form:form action="${editaction}" modelAttribute="product"

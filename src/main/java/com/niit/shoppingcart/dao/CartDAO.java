@@ -13,10 +13,8 @@ public boolean update(Cart cart);
 public boolean delete(Cart cart);
 public List<Cart>list();
 public Cart get(int id);
-public Cart getproduct(int id);
-public boolean saveOrUpdate(Cart cart);
-
-/*public void Save(Cart cart2);
-
-public void Update(Cart cart1);*/
+public Cart getproduct(int productid,int userid );
+public double getprice(int id);
+public int getsize(int id);
+public Cart getusercart(int uid);
 }
